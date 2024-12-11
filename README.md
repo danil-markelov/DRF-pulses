@@ -9,11 +9,12 @@ Within the code, we recommend not to change any variables and functions, except 
    
 "Pyridine_300_1000_p0"; "Pyridine_300_1000_p1"; "Pyridine_300_1000_p2"; "Pyridine_300_1000_p3" and two txt-files "shape_names.txt" and "o1_names.txt". The content of the files will be as follows:
 
-shape_names.txt = "Pyridine_300_1000_p0",
+shape_names.txt = {"Pyridine_300_1000_p0",
                   "Pyridine_300_1000_p1",
                   "Pyridine_300_1000_p2",
-                  "Pyridine_300_1000_p3",
-o1_names.txt = 1000,
+                  "Pyridine_300_1000_p3",}
+                  
+o1_names.txt = {1000,}
 
 2) Aray "freq", where you set the range of frequencies excited by nu_rf_s (the first and last frequency in Hz). For example, freq = np.linspace(3000, 4000, 20) makes frequency array from 3000 Hz to 4000 Hz, which consists of 20 equally spaced frequencies.
 
