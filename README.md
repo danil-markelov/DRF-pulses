@@ -22,6 +22,8 @@ Within the code, we recommend not to change any variables and functions, except 
 
 5) Vairable "pul_len" which is the lenth of the DRF-pulse (in us). We recommend to use pul_len = 300 ms and do not exceed this value.
 
+# 2) TS-program
+
 
  In this experiments, nu_rf_t (excites the "trans"-hydride proton with respect to the complex-bound substrate) remains constant (preferably, resonant), while nu_rf_s (excites the complex-bound substrate) is varied in the desired range.
 # Guideline
