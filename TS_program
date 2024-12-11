@@ -1,0 +1,82 @@
+;by Danil Markelov
+;avance-version (12/01/11)
+;1D sequence
+;
+;$CLASS=HighRes
+;$DIM=1D
+;$TYPE=
+;$SUBTYPE=
+;$COMMENT=
+
+#include <TTLvalves_shuttle.incl>
+#include <Avance.incl>
+#include <Grad.incl>
+
+"acqt0=-p1*2/3.1416"
+
+;;;;;; GRADIENT KILL ;;;;;;
+1 ze
+d1
+10u pl1:f1
+20u UNBLKGRAD
+p16:gp1 ;cleanning gradient 2
+d16
+  (p1 ph=54.735):f1 ;(p3 ph=54.735):f3
+d16
+p17:gp2 ;cleanning gradient 2
+d16
+(p1 ph=54.735):f1 ;(p3 ph=54.735):f3
+(p1 ph=180):f1 ;(p3 ph=180):f3
+d16
+p18:gp3 ;cleanning gradient 2
+d16
+20u BLKGRAD
+1m LOCKH_ON
+50m IN_ON OUT_ON E_ON pH2_ON
+
+2 30m
+  d2 E_OFF REG_ON
+50m REG_OFF E_ON ; stop bubbling
+d4
+
+(p11:sp1 ph1):f1
+10u pl1:f1
+(p11:sp2 ph1):f1
+10u pl1:f1
+(p11:sp3 ph1):f1
+10u pl1:f1
+(p11:sp4 ph1):f1
+10u pl1:f1
+
+lo to 2 times l12
+
+d5
+  (p1 ph2):f1
+  go=2 ph31
+  20m wr #0
+50m IN_OFF E_OFF pH2_OFF OUT_OFF  
+10m LOCKH_OFF
+exit
+
+
+ph1=0
+ph2=0
+ph31=0
+
+
+;pl1 : f1 channel - power level for pulse (default)
+;pl2 : f2 channel - power level for X-CW
+;pl3 : f3 channel - power level for 1H-CW
+;p1 : f1 channel -  high power pulse
+;p11: f1 channel - shape duration (pul length / 4)
+;d1 : relaxation delay; 1-5 * T1
+;d2 : Pulse bubbling time (~ 500 ms)
+;p11 : shape duration
+;d4 : Delay after bubbling before CW
+;d5 : Delay after CW-cycles before FID
+
+;ns: 1 * n, total number of scans: NS * TD0
+;l12 : N number of polarization cycles
+
+
+;$Id: zg,v 1.10.8.1 2012/01/31 17:56:41 ber Exp $
