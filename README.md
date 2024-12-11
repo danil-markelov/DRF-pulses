@@ -1,7 +1,7 @@
 # DRF-pulses
 
 # 1) Pulse generator
-"Pulse_generator.py" generates the DRF-pulses to excite desired frequencies. As a result, you will have a set of TopSpin(TS)-compatible shapes and two txt-files entitled as "shape_names.txt" and "o1_names.txt". "shape_names.txt" contains the name of the pulses, whereas "o1_names.txt" contains corresponding O1 (the carrier frequency in TS in Hz) that should be set in a TS dataset for the correct behavior of the shapes. The shape pulses could be directly transfered to the TS shapes without any changes required. To run the DRF-SABRE experiment, we strongly recommend to use the AU-program "AU_DRF.txt" to automatically run the experiments.
+"Pulse_generator.py" generates the DRF-pulses to excite two desired frequencies. As a result, you will have a set of TopSpin(TS)-compatible shapes and two txt-files entitled as "shape_names.txt" and "o1_names.txt". "shape_names.txt" contains the name of the pulses, whereas "o1_names.txt" contains corresponding O1 (the carrier frequency in TS in Hz) that should be set in a TS dataset for the correct behavior of the shapes. The shape pulses could be directly transfered to the TS shapes without any changes required. To run the DRF-SABRE experiment, we strongly recommend to use the AU-program "AU_DRF.txt" to automatically run the experiments.
 
 Within the code, we recommend not to change any variables and functions, except of:
 
