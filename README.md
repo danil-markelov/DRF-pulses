@@ -28,11 +28,11 @@ The TS-program for DRF excitation can be found in "TS_program". As you can see, 
 # 3) AU-program
 AU-program allows running the DRF-SABRE experiments automatically. In this experiments, nu_rf_t (excites the "trans"-hydride proton with respect to the complex-bound substrate) remains constant (preferably, resonant), while nu_rf_s (excites the complex-bound substrate) is varied in the desired range. In this program, you should change:
 1) "N" is the number of different frequencies to be excited (N = number_of_points from "pulse_generator.py").
-2) "char wavelist[][]" is an array which contains the names of all DRF-pulses. As we mentioned, DRF-pulse is a sequence of 4 pulses. Therefore, "wavelist" has the dimesion of 4*N (char walesit[4*N][64]).
+2) "char wavelist[][]" is an array which contains the names of all DRF-pulses. As we mentioned, DRF-pulse is a sequence of 4 pulses. Therefore, "wavelist" has the dimesion of 4*N (char walvelist[4*N][64]).
 3) "double o1[]" is an array which contains all o1 frequencies (in Hz) that will be set in a dataset for correct behavior of the DRF excitation. The dimesion of "o1" is N (double o1[N])
 
 # Guideline
-1) Use TS-program "DRF_TS_program.txt". As you can see, in this program we use 4 shapes in one experiment. This is because each DRF-shape is represented as a sequence of 4 consectuive shapes (we are not going into details of the technical implementation). Set the length of each pulse, P11, equal to pul_len / 4. For example, if you enetered 300 ms of pulse duration in "Pulse_generator.py", you should set P11 = 300 ms / 4 = 75 ms. The amplitudes of the pulses have to be set indetical (for example, the amplitudes of all 4 pulses of 40 Hz).
-2) Transfer the generated shape files into the TS-directory with shape pulses.
-3) Then use AU-program "DRF_AU_program". This program requires the name of the pulses and their o1. The information about this parameters is encoded within the name of the pulses, and here we need the txt-files "shape_names.txt" and "o1_names.txt". In AU, you should only modify arrays "shape_names" and "o1". Set the size of "shape_names" equal to 4 * number_of_points and the size of "o1" equal to number_of_points from the "pulse_generator.py". For example, if number_of_shapes = 10, then the size of "shape_names" is 40, and the size of "o1" is 10. Then copy to array "shape_names" the whole file "shape_names.txt" without any changes. Then copy "o1_names.txt" into array "o1" without any changes.
-4) Compile and exectute the AU-program. As a result, all the datasets will be in a spooler, and DRF experiments can be run in the automatic regime
+1) Generate DRF pulses using "Pulse_generator.py". You will have a set of pulses and two .txt files. Transfer the DRF pulses into the TS-directory with your shape pulses.
+2) Make a dataset with the TS-program attached. Set p11 (don't forget that p11 = pul_len / 4) and the amplitude of the shape pulses (they must be indetical).
+3) Open the AU-program. Set N = number of frequencies, nu_rf_s, to be excited. Set dimesion of o1 = N (o1[N]), and the first dimension of wavelist = 4*N (wavelist[4*N][]). Copy the content of "shape_names.txt" into "wavelist", and the content of "o1_names.txt" into "o1".
+4) Compile and then execute the AU-program. 
