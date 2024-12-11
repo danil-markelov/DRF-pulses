@@ -16,7 +16,7 @@ Within the code, we recommend not to change any variables and functions, except 
 
 2) Aray "freq", where you set the range of frequencies excited by nu_rf_s (the first and last frequency in Hz). For example, freq = np.linspace(3000, 4000, 20) makes frequency array from 3000 Hz to 4000 Hz, which consists of 20 equally spaced frequencies.
 
-3) Variable "number_of_points", where you set the number of nu_rf_s to be excited. We recommend to adjust "number_of_points" and the first and last frequency in "freq" so that the increment in frequnecy will be 4-5 Hz (the increment is calculated as: increment = (last_freq - first_freq) / (number_of_points - 1)) 
+3) Variable "number_of_points", where you set the number of nu_rf_s to be excited. We recommend to adjust "number_of_points" and the first and last frequency in "freq" so that the increment in frequnecy will be at least 4-5 Hz (the increment is calculated as: increment = (last_freq - first_freq) / (number_of_points - 1)) 
 
 4) Variable "freq_hyd", where you set the frequency nu_rf_t which excites the "trans"-hydride proton in the complex (Preferably, nu_rf_t = nu_res_t, i.e. set nu_rf_t on-resonance to this proton; nu_res_t can easily be found from the NMR spectrum).
 
