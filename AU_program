@@ -1,0 +1,165 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <unistd.h>
+#include <ShapeIO/ShapeIOC.h>
+
+#include <stdafx.h>
+#include <math.h>
+// PROGRAM TO CHANGE THE SHAPE PULSE AND CORRESPONDING O1
+/****************************************************************/
+
+GETCURDATA
+
+int N = 25; //number of waveforms\
+
+// N * 4 is dimention of wavelist
+char wavelist[100][64] = {
+"3_off_15C_300_3CH3Py_shape_-28085_p0",
+"3_off_15C_300_3CH3Py_shape_-28085_p1",
+"3_off_15C_300_3CH3Py_shape_-28085_p2",
+"3_off_15C_300_3CH3Py_shape_-28085_p3",
+"3_off_15C_300_3CH3Py_shape_-28060_p0",
+"3_off_15C_300_3CH3Py_shape_-28060_p1",
+"3_off_15C_300_3CH3Py_shape_-28060_p2",
+"3_off_15C_300_3CH3Py_shape_-28060_p3",
+"3_off_15C_300_3CH3Py_shape_-28035_p0",
+"3_off_15C_300_3CH3Py_shape_-28035_p1",
+"3_off_15C_300_3CH3Py_shape_-28035_p2",
+"3_off_15C_300_3CH3Py_shape_-28035_p3",
+"3_off_15C_300_3CH3Py_shape_-28010_p0",
+"3_off_15C_300_3CH3Py_shape_-28010_p1",
+"3_off_15C_300_3CH3Py_shape_-28010_p2",
+"3_off_15C_300_3CH3Py_shape_-28010_p3",
+"3_off_15C_300_3CH3Py_shape_-27985_p0",
+"3_off_15C_300_3CH3Py_shape_-27985_p1",
+"3_off_15C_300_3CH3Py_shape_-27985_p2",
+"3_off_15C_300_3CH3Py_shape_-27985_p3",
+"3_off_15C_300_3CH3Py_shape_-27960_p0",
+"3_off_15C_300_3CH3Py_shape_-27960_p1",
+"3_off_15C_300_3CH3Py_shape_-27960_p2",
+"3_off_15C_300_3CH3Py_shape_-27960_p3",
+"3_off_15C_300_3CH3Py_shape_-27935_p0",
+"3_off_15C_300_3CH3Py_shape_-27935_p1",
+"3_off_15C_300_3CH3Py_shape_-27935_p2",
+"3_off_15C_300_3CH3Py_shape_-27935_p3",
+"3_off_15C_300_3CH3Py_shape_-27910_p0",
+"3_off_15C_300_3CH3Py_shape_-27910_p1",
+"3_off_15C_300_3CH3Py_shape_-27910_p2",
+"3_off_15C_300_3CH3Py_shape_-27910_p3",
+"3_off_15C_300_3CH3Py_shape_-27885_p0",
+"3_off_15C_300_3CH3Py_shape_-27885_p1",
+"3_off_15C_300_3CH3Py_shape_-27885_p2",
+"3_off_15C_300_3CH3Py_shape_-27885_p3",
+"3_off_15C_300_3CH3Py_shape_-27860_p0",
+"3_off_15C_300_3CH3Py_shape_-27860_p1",
+"3_off_15C_300_3CH3Py_shape_-27860_p2",
+"3_off_15C_300_3CH3Py_shape_-27860_p3",
+"3_off_15C_300_3CH3Py_shape_-27835_p0",
+"3_off_15C_300_3CH3Py_shape_-27835_p1",
+"3_off_15C_300_3CH3Py_shape_-27835_p2",
+"3_off_15C_300_3CH3Py_shape_-27835_p3",
+"3_off_15C_300_3CH3Py_shape_-27810_p0",
+"3_off_15C_300_3CH3Py_shape_-27810_p1",
+"3_off_15C_300_3CH3Py_shape_-27810_p2",
+"3_off_15C_300_3CH3Py_shape_-27810_p3",
+"3_off_15C_300_3CH3Py_shape_-27785_p0",
+"3_off_15C_300_3CH3Py_shape_-27785_p1",
+"3_off_15C_300_3CH3Py_shape_-27785_p2",
+"3_off_15C_300_3CH3Py_shape_-27785_p3",
+"3_off_15C_300_3CH3Py_shape_-27760_p0",
+"3_off_15C_300_3CH3Py_shape_-27760_p1",
+"3_off_15C_300_3CH3Py_shape_-27760_p2",
+"3_off_15C_300_3CH3Py_shape_-27760_p3",
+"3_off_15C_300_3CH3Py_shape_-27735_p0",
+"3_off_15C_300_3CH3Py_shape_-27735_p1",
+"3_off_15C_300_3CH3Py_shape_-27735_p2",
+"3_off_15C_300_3CH3Py_shape_-27735_p3",
+"3_off_15C_300_3CH3Py_shape_-27710_p0",
+"3_off_15C_300_3CH3Py_shape_-27710_p1",
+"3_off_15C_300_3CH3Py_shape_-27710_p2",
+"3_off_15C_300_3CH3Py_shape_-27710_p3",
+"3_off_15C_300_3CH3Py_shape_-27685_p0",
+"3_off_15C_300_3CH3Py_shape_-27685_p1",
+"3_off_15C_300_3CH3Py_shape_-27685_p2",
+"3_off_15C_300_3CH3Py_shape_-27685_p3",
+"3_off_15C_300_3CH3Py_shape_-27660_p0",
+"3_off_15C_300_3CH3Py_shape_-27660_p1",
+"3_off_15C_300_3CH3Py_shape_-27660_p2",
+"3_off_15C_300_3CH3Py_shape_-27660_p3",
+"3_off_15C_300_3CH3Py_shape_-27635_p0",
+"3_off_15C_300_3CH3Py_shape_-27635_p1",
+"3_off_15C_300_3CH3Py_shape_-27635_p2",
+"3_off_15C_300_3CH3Py_shape_-27635_p3",
+"3_off_15C_300_3CH3Py_shape_-27610_p0",
+"3_off_15C_300_3CH3Py_shape_-27610_p1",
+"3_off_15C_300_3CH3Py_shape_-27610_p2",
+"3_off_15C_300_3CH3Py_shape_-27610_p3",
+"3_off_15C_300_3CH3Py_shape_-27585_p0",
+"3_off_15C_300_3CH3Py_shape_-27585_p1",
+"3_off_15C_300_3CH3Py_shape_-27585_p2",
+"3_off_15C_300_3CH3Py_shape_-27585_p3",
+"3_off_15C_300_3CH3Py_shape_-27560_p0",
+"3_off_15C_300_3CH3Py_shape_-27560_p1",
+"3_off_15C_300_3CH3Py_shape_-27560_p2",
+"3_off_15C_300_3CH3Py_shape_-27560_p3",
+"3_off_15C_300_3CH3Py_shape_-27535_p0",
+"3_off_15C_300_3CH3Py_shape_-27535_p1",
+"3_off_15C_300_3CH3Py_shape_-27535_p2",
+"3_off_15C_300_3CH3Py_shape_-27535_p3",
+"3_off_15C_300_3CH3Py_shape_-27510_p0",
+"3_off_15C_300_3CH3Py_shape_-27510_p1",
+"3_off_15C_300_3CH3Py_shape_-27510_p2",
+"3_off_15C_300_3CH3Py_shape_-27510_p3",
+"3_off_15C_300_3CH3Py_shape_-27485_p0",
+"3_off_15C_300_3CH3Py_shape_-27485_p1",
+"3_off_15C_300_3CH3Py_shape_-27485_p2",
+"3_off_15C_300_3CH3Py_shape_-27485_p3"};
+
+double o1[25] = {
+-2808.5,
+-2806.0,
+-2803.5,
+-2801.0,
+-2798.5,
+-2796.0,
+-2793.5,
+-2791.0,
+-2788.5,
+-2786.0,
+-2783.5,
+-2781.0,
+-2778.5,
+-2776.0,
+-2773.5,
+-2771.0,
+-2768.5,
+-2766.0,
+-2763.5,
+-2761.0,
+-2758.5,
+-2756.0,
+-2753.5,
+-2751.0,
+-2748.5};
+
+FILE *fTitle;
+int counter;
+
+for (counter = 0; counter < N; counter++)
+{
+STOREPAR("SPNAM 1", wavelist[4 * counter]);
+STOREPAR("SPNAM 2", wavelist[4 * counter + 1]);
+STOREPAR("SPNAM 3", wavelist[4 * counter + 2]);
+STOREPAR("SPNAM 4", wavelist[4 * counter + 3]);  
+
+STOREPAR("O1", o1[counter]);
+XCMD("sendgui qu zg")
+IEXPNO
+Sleep(100);
+}
+
+free(wavelist);
+free(o1);
+Sleep(1000);
+QUITMSG("AU ChangeShapeAM  finished!")
