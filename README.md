@@ -5,18 +5,16 @@
 
 Within the code, we recommend not to change any variables and functions, except of:
 
-1) Variable "shape_name", where you enter the name of the pulse. In the code, use the following template: "Pyridine_300_1000". The first number is the length of the pulse (in ms). The second number is O1 (the carrier freqeuncy in Hz) that have to be set in the dataset in order to provide correct DRF excitation. No need to enter these numbers manually, as this procedure is automized, hoevever, you should manually change only the name of the molecule. We highlight that O1 is varied from pulse to pulse and used in the shape filename to distinguish them. Moreover, for the sake of technical implementation in TS, each DRF-pulse is represented as a sequence of 4 consecutive pulses. If, for example, we want to make the DRF pulse with 300 ms duration and O1 = 1000 Hz, the program will return us 4 shapes named as:
+1) Variable "shape_name", where you enter the name of the pulse. In the code, use the following template: "Pyridine_300_1000". The first number is the length of the pulse (in ms). The second number is O1 (the carrier freqeuncy in Hz) that have to be set in the dataset in order to provide correct DRF excitation. No need to enter these numbers manually, as this procedure is automized, hoevever, you should manually change only the name of the molecule. We highlight that O1 is varied from pulse to pulse and used in the shape filename to distinguish them. Moreover, for the sake of technical implementation in TS, each DRF-pulse is represented as a sequence of 4 consecutive pulses. If, for example, we want to make the DRF pulse with 300 ms duration and O1 = 1000 Hz, the program will return us 4 shapes named as: "Pyridine_300_1000_p0"; "Pyridine_300_1000_p1"; "Pyridine_300_1000_p2"; "Pyridine_300_1000_p3" and two txt-files "shape_names.txt" and "o1_names.txt". The content of the files will be as follows:
    
-"Pyridine_300_1000_p0"; "Pyridine_300_1000_p1"; "Pyridine_300_1000_p2"; "Pyridine_300_1000_p3" and two txt-files "shape_names.txt" and "o1_names.txt". The content of the files will be as follows:
-
-shape_names.txt = {"Pyridine_300_1000_p0",
+ shape_names.txt = {"Pyridine_300_1000_p0",
                   "Pyridine_300_1000_p1",
                   "Pyridine_300_1000_p2",
                   "Pyridine_300_1000_p3",}
-                  
-o1_names.txt = {1000,}
+   
+ o1_names.txt = {1000,}
 
-2) Aray "freq", where you set the range of frequencies excited by nu_rf_s (the first and last frequency in Hz). For example, freq = np.linspace(3000, 4000, 20) makes frequency array from 3000 Hz to 4000 Hz, which consists of 20 equally spaced frequencies.
+3) Aray "freq", where you set the range of frequencies excited by nu_rf_s (the first and last frequency in Hz). For example, freq = np.linspace(3000, 4000, 20) makes frequency array from 3000 Hz to 4000 Hz, which consists of 20 equally spaced frequencies.
 
 4) Variable "number_of_points", where you set the number of nu_rf_s to be excited. We recommend to adjust "number_of_points" and the first and last frequency in "freq" so that the increment in frequnecy will be 4-5 Hz (the increment is calculated as: increment = (last_freq - first_freq) / (number_of_points - 1)) 
 
