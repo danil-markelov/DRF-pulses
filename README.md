@@ -23,6 +23,7 @@ Within the code, we recommend not to change any variables and functions, except 
 5) Vairable "pul_len" which is the lenth of the DRF-pulse (in us). We recommend to use pul_len = 300 ms and do not exceed this value.
 
 # 2) TS-program
+The TS-program for DRF excitation can be found in "TS_program". As you can see, in this program we use 4 shapes in one experiment: sp1, sp2, sp3, sp4. This is because each DRF-shape is represented as a sequence of 4 consectuive shapes (we are not going into details of the technical implementation). Set the length of each pulse, p11, equal to pul_len / 4. For example, if you enetered 300 ms of pulse duration in "Pulse_generator.py", you should set p11 = 300 ms / 4 = 75 ms. Importantly, the amplitudes of the shape pulses have to be set indetical (for example, the amplitudes of all 4 pulses of 40 Hz).
 
 
  In this experiments, nu_rf_t (excites the "trans"-hydride proton with respect to the complex-bound substrate) remains constant (preferably, resonant), while nu_rf_s (excites the complex-bound substrate) is varied in the desired range.
