@@ -3,7 +3,7 @@
 # 1) Pulse generator
 "Pulse_generator.py" generates the DRF-pulses to excite desired frequencies. As a result, you will have a set of TopSpin(TS)-compatible shapes and two txt-files entitled as "shape_names.txt" and "o1_names.txt". "shape_names.txt" contains the name of the pulses, whereas "o1_names.txt" contains corresponding O1 (the carrier frequency in TS in Hz) that should be set in a TS dataset for the correct behavior of the shapes. The shape pulses could be directly transfered to the TS shapes without any changes required. To run the DRF-SABRE experiment, we strongly recommend to use the AU-program "AU_DRF.txt" to automatically run the experiments.
 
-Within the code, we reccomend not to change any variables and functions, except of:
+Within the code, we recommend not to change any variables and functions, except of:
 
 1) Variable "shape_name", where you enter the name of the pulse. In the code, use the following template: "Pyridine_300_1000". The first number is the length of the pulse (in ms). The second number is O1 (the carrier freqeuncy in Hz) that have to be set in the dataset in order to provide correct DRF excitation. No need to enter these numbers manually, as this procedure is automized, hoevever, you should manually change only the name of the molecule. We highlight that O1 is varied from pulse to pulse and used in the shape filename to distinguish them. Moreover, for the sake of technical implementation in TS, each DRF-pulse is represented as a sequence of 4 consecutive pulses. If, for example, we want to make the DRF pulse with 300 ms duration and O1 = 1000 Hz, the program will return us 4 shapes named as:
    
